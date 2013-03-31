@@ -13,13 +13,15 @@ if len(sys.argv) < 2:
 	sys.exit()
 
 indir = sys.argv[1]
-tmpdir = tempfile.mkdtemp()
 
 log = logging.getLogger(APP_NAME)
-#log.setLevel(logging.DEBUG)
+log.setLevel(logging.DEBUG)
 lfh = logging.FileHandler(indir + '/' + APP_NAME + '.log')
 #lfh.setLevel(logging.DEBUG)
 log.addHandler(lfh)
+
+tmpdir = tempfile.mkdtemp()
+log.info('Created temp dir ' + tmpdir + '.')	
 
 INPUT_EXT1 = '.MOV'
 OUT_EXT1 = '.mp4'
