@@ -10,9 +10,13 @@ if len(sys.argv) < 2:
     sys.exit()
 
 infile = sys.argv[1]
-outfile = infile + '.mp4'
+name, ext = os.path.splitext(infile)
+outfile = name + '_compressed.mp4'
 
-#ffmpeg -i out.mp4 -c:v libx264 -preset slow -crf 27 -vf "mp=eq2=1.0:1.0:0.1:1.5" -c:a copy -ss 00:00:00 -t 00:00:10 out2.mp4
+gamma      = '1.0'  # <0.1-10> initial gamma value (default: 1.0)
+contrast   = '1.0'  # <-2-2> initial contrast, where negative values result in a negative image (default: 1.0)
+brightness = '0.1'  # <-1-1> initial brightness (default: 0.0)
+saturation = '1.5'  # <0-3> initial saturation (default: 1.0)
 
-cmd = 'ffmpeg -i ' + infile + ' -c:v  libx264 -preset slow -crf 27 -vf "mp=eq2=1.0:1.0:0.1:1.5" -c:a copy ' + outfile
+cmd = 'ffmpeg -i ' + infile + ' -c:v  libx264 -preset slow -crf 27 -vf "mp=eq2=' + gamma + ':' + contrast + ':' + brightness + ':' + saturation + '" -c:a copy ' + outfile
 os.system(cmd)
