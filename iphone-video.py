@@ -20,7 +20,7 @@ START_IMG = 'start.png'
 INPUT_EXT1 = '.MOV'
 OUT_EXT1 = '.mpg'
 MP4_RESULT_FILE = 'out.mp4'
-FADE_FRAMES = '50'
+FADE_FRAMES = 50
 
 log = logging.getLogger(APP_NAME)
 log.setLevel(logging.DEBUG)
@@ -66,8 +66,8 @@ for infile in os.listdir(indir):
     if infile.endswith(INPUT_EXT1):
         outfile = tmpdir + '/' + infile + OUT_EXT1
         frames = get_frames(infile)
-        start_end_frame = frames - 50
-        cmd = 'ffmpeg -i ' + infile + ' -qscale:v 1 -vf "fade=in:0:' + FADE_FRAMES + ',fade=out:' + str(start_end_frame) + ':' + FADE_FRAMES + '" ' + outfile
+        start_end_frame = frames - FADE_FRAMES
+        cmd = 'ffmpeg -i ' + infile + ' -qscale:v 1 -vf "fade=in:0:' + str(FADE_FRAMES) + ',fade=out:' + str(start_end_frame) + ':' + str(FADE_FRAMES) + '" ' + outfile
         log.info(cmd)
         os.system(cmd)
         mpg_file_list.append(outfile)
