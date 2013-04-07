@@ -22,7 +22,7 @@ log.setLevel(logging.DEBUG)
 lfh = logging.FileHandler(APP_NAME + '.log')
 log.addHandler(lfh)
 
-start_end_frame = frames - 50;
+start_end_frame = frames - 50
 cmd = 'ffmpeg -i ' + infile + ' -qscale:v 1 -vf "fade=in:0:50,fade=out:' + str(start_end_frame) + ':50" ' + outfile
 log.info(cmd)
 os.system(cmd)
