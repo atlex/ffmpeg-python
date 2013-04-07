@@ -38,13 +38,8 @@ start_end_frame = frames - 50;
 cmd = 'ffmpeg -i ' + infile + ' -qscale:v 1 -vf "fade=in:0:50,fade=out:' + start_end_frame + ':50" ' + outfile2
 os.system(cmd)
 
-#Merge 1 and 2 videos
-outmpg = tmpdir + '/out.mpg'
-cmd = 'ffmpeg -i concat:"' + outfile1 + '|' + outfile2 + '" -c copy ' + outmpg
-os.system(cmd)
-
-#Compress MPG -> MP4
-cmd = 'ffmpeg -i ' + outmpg + ' -c:v libx264 -preset slow -crf 23 -c:a aac -strict -2 ' + RESULT_FILE
+#Merge 1 and 2 videos and compress into MP4
+cmd = 'ffmpeg -i concat:"' + outfile1 + '|' + outfile2 + '" -c:v libx264 -preset slow -crf 23 -c:a aac -strict -2 ' + RESULT_FILE
 os.system(cmd)
 
 #Clean
