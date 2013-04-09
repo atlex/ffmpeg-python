@@ -63,7 +63,7 @@ log.info('MOVs -> MPGs')
 mpg_file_list = list()
 mpg_file_list.append(outfile_start)
 for infile in os.listdir(indir):
-    if infile.endswith(INPUT_EXT1):
+    if infile.upper().endswith(INPUT_EXT1):
         outfile = tmpdir + '/' + infile + OUT_EXT1
         frames = get_frames(infile)
         start_end_frame = frames - FADE_FRAMES
@@ -83,6 +83,6 @@ log.info(cmd)
 os.system(cmd)
 
 
-log.info('\nRemoving temp dir ' + tmpdir + '...')
+log.info('Removing temp dir ' + tmpdir + '...')
 shutil.rmtree(tmpdir)
 log.info('DONE')
