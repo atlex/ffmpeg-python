@@ -21,6 +21,7 @@ INPUT_EXT1 = '.MOV'
 OUT_EXT1 = '.mpg'
 MP4_RESULT_FILE = 'out.mp4'
 FADE_FRAMES = 50
+VIDEO_QUALITY = 23
 
 log = logging.getLogger(APP_NAME)
 log.setLevel(logging.DEBUG)
@@ -78,7 +79,7 @@ mpg_files_str = ''
 for mpg_file in mpg_file_list:
     mpg_files_str = mpg_files_str + mpg_file + '|'
 
-cmd = 'ffmpeg -i concat:"' + mpg_files_str + '" -c:v libx264 -preset slow -crf 23 -c:a aac -strict -2 ' + MP4_RESULT_FILE
+cmd = 'ffmpeg -i concat:"' + mpg_files_str + '" -c:v libx264 -preset slow -crf ' + str(VIDEO_QUALITY) + ' -c:a aac -strict -2 ' + MP4_RESULT_FILE
 log.info(cmd)
 os.system(cmd)
 
