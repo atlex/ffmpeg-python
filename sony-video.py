@@ -8,16 +8,16 @@ import re
 import logging
 import shutil
 
-APP_NAME = 'iphone-video'
+APP_NAME = 'sony-video'
 
 if len(sys.argv) < 2:
-    print 'Creates a video from MOV files.\n Usage:', APP_NAME, '<dir with MOV files>'
+    print 'Creates a video from MTS files.\n Usage:', APP_NAME, '<dir with MTS files>'
     sys.exit()
 
 indir = sys.argv[1]
 
 START_IMG = 'start.png'
-INPUT_EXT1 = '.MOV'
+INPUT_EXT1 = '.MTS'
 OUT_EXT1 = '.mpg'
 MP4_RESULT_FILE = 'out.mp4'
 FADE_FRAMES = 50
@@ -60,7 +60,7 @@ log.info(cmd)
 os.system(cmd)
 
 
-log.info('MOVs -> MPGs')
+log.info('MTSs -> MPGs')
 mpg_file_list = list()
 mpg_file_list.append(outfile_start)
 for infile in os.listdir(indir):
