@@ -8,7 +8,7 @@ import logging
 import subprocess
 import re
 
-APP_NAME = 'qstar-video'
+APP_NAME = 'mp4-video'
 
 if len(sys.argv) < 2:
     print 'Creates a video from MP4 file.\n Usage:', APP_NAME, '<MP4>'
