@@ -48,20 +48,23 @@ def get_frames(infile):
 tmpdir = tempfile.mkdtemp()
 log.info('Temp dir ' + tmpdir + ' is created.')
 
-#1 video with fade from PNG
+log.info('1 MPG with fade from PNG')
 outfile1 = tmpdir + '/1.mpg'
 cmd = 'ffmpeg -loop 1 -f image2 -i ' + START_IMG + ' -t 5 -f lavfi -i aevalsrc=0 -vf "fade=in:0:25,fade=out:110:25" -r 29.97 -qscale:v 1 ' + outfile1
+log.info(cmd)
 os.system(cmd)
 
-#2 video with fade
+log.info('2 MPG with fade')
 outfile2 = tmpdir + '/2.mpg'
 frames = get_frames(infile)
 start_end_frame = frames - FADE_FRAMES
 cmd = 'ffmpeg -i ' + infile + ' -qscale:v 1 -vf "fade=in:0:' + str(FADE_FRAMES) + ',fade=out:' + str(start_end_frame) + ':' + str(FADE_FRAMES) + '" ' + outfile2
+log.info(cmd)
 os.system(cmd)
 
-#Merge 1 and 2 videos and compress into MP4
+log.info('Merge 1 and 2 MPGs and compress into MP4')
 cmd = 'ffmpeg -i concat:"' + outfile1 + '|' + outfile2 + '" -c:v libx264 -preset slow -crf 23 -c:a aac -strict -2 ' + RESULT_FILE
+log.info(cmd)
 os.system(cmd)
 
 #Clean

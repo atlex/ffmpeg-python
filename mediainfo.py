@@ -14,7 +14,7 @@ infile = sys.argv[1]
 
 
 def get_frames(infile):
-    args = ['/Users/alex/Applications/ffmpeg/ffmpeg', '-i', infile]
+    args = ['ffmpeg', '-i', infile]
     p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = p.communicate()
 
