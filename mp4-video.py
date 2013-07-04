@@ -19,6 +19,7 @@ infile = sys.argv[1]
 START_IMG = 'start.png'
 RESULT_FILE = 'out.mp4'
 FADE_FRAMES = 50
+VIDEO_QUALITY = 24 #22-25
 
 log = logging.getLogger(APP_NAME)
 log.setLevel(logging.DEBUG)
@@ -63,7 +64,7 @@ log.info(cmd)
 os.system(cmd)
 
 log.info('Merge 1 and 2 MPGs and compress into MP4')
-cmd = 'ffmpeg -i concat:"' + outfile1 + '|' + outfile2 + '" -c:v libx264 -preset slow -crf 23 -c:a aac -strict -2 ' + RESULT_FILE
+cmd = 'ffmpeg -i concat:"' + outfile1 + '|' + outfile2 + '" -c:v libx264 -preset slow -crf ' + str(VIDEO_QUALITY) + ' -c:a aac -strict -2 ' + RESULT_FILE
 log.info(cmd)
 os.system(cmd)
 
