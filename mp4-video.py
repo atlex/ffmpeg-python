@@ -5,8 +5,7 @@ import sys
 import tempfile
 import shutil
 import logging
-import subprocess
-import re
+import mediainfo
 
 APP_NAME = 'mp4-video'
 
@@ -28,23 +27,6 @@ formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 lfh.setFormatter(formatter)
 log.addHandler(lfh)
 
-def get_frames(infile):
-    args = ['ffmpeg', '-i', infile]
-    p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    stdout, stderr = p.communicate()
-
-    pattern1 = re.compile(r'Duration: (\d\d):(\d\d):(\d\d)')
-    match = pattern1.search(stderr)
-    hours = int(match.groups()[0])
-    minutes = int(match.groups()[1])
-    seconds = int(match.groups()[2])
-    total_seconds = hours * 3600 + minutes * 60 + seconds
-
-    pattern2 = re.compile(r'Stream #0.*?(\d+(?:\.\d+))')
-    match = pattern2.search(stderr)
-    fps = float(match.groups()[0])
-
-    return total_seconds * fps
 
 tmpdir = tempfile.mkdtemp()
 log.info('Temp dir ' + tmpdir + ' is created.')
@@ -57,7 +39,7 @@ os.system(cmd)
 
 log.info('2 MPG with fade')
 outfile2 = tmpdir + '/2.mpg'
-frames = get_frames(infile)
+frames = mediainfo.get_frames(infile)
 start_end_frame = frames - FADE_FRAMES
 cmd = 'ffmpeg -i ' + infile + ' -qscale:v 1 -vf "fade=in:0:' + str(FADE_FRAMES) + ',fade=out:' + str(start_end_frame) + ':' + str(FADE_FRAMES) + '" ' + outfile2
 log.info(cmd)
