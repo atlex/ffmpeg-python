@@ -3,6 +3,7 @@
 import sys
 import subprocess
 import re
+import time
 
 #APP_NAME = 'mediainfo'
 
@@ -35,6 +36,24 @@ def get_frames(infile):
     fps = float(match.groups()[0])
 
     return total_seconds * fps
+
+
+def get_fps(infile):
+    args = ['ffmpeg', '-i', infile]
+    p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = p.communicate()
+
+    pattern1 = re.compile(r'Stream #0.*?(\d+(?:\.\d+)?)\s*fps')
+    match = pattern1.search(stderr)
+    fps = float(match.groups()[0])
+
+    return fps
+
+
+def get_length_str(frames, fps):
+    total_seconds = frames / fps
+    return time.strftime('%H:%M:%S', time.gmtime(total_seconds))
+
 
 # frames = get_frames(infile)
 # print frames
