@@ -20,7 +20,7 @@ INPUT_EXT1 = '.MP4'
 OUT_EXT1 = '.mpg'
 MP4_RESULT_FILE = 'out.mp4'
 FADE_FRAMES = 50
-VIDEO_QUALITY = 22 #22=Mbps, 23=Mbps, 24=6Mbps
+VIDEO_QUALITY = 22 #22=10300 Kbps, 23=, 24=6000 Kbps
 
 log = logging.getLogger(APP_NAME)
 log.setLevel(logging.DEBUG)
