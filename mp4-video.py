@@ -18,7 +18,7 @@ infile = sys.argv[1]
 START_IMG = 'start.png'
 RESULT_FILE = 'out.mp4'
 FADE_FRAMES = 50
-VIDEO_QUALITY = 24 #22-25
+VIDEO_QUALITY = 22 #22-25
 
 log = logging.getLogger(APP_NAME)
 log.setLevel(logging.DEBUG)
