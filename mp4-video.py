@@ -27,6 +27,11 @@ formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 lfh.setFormatter(formatter)
 log.addHandler(lfh)
 
+if not os.path.exists(START_IMG):
+    print 'There is no ' + START_IMG + ' file. Exit.'
+    log.info('There is no ' + START_IMG + ' file.')
+    sys.exit()
+
 
 tmpdir = tempfile.mkdtemp()
 log.info('Temp dir ' + tmpdir + ' is created.')
