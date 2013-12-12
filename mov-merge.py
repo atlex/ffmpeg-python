@@ -35,7 +35,7 @@ for infile in os.listdir(indir):
     if infile.endswith(INPUT_EXT1):
         #log.info(infile)
         outfile = tmpdir + '/' + infile + OUT_EXT1
-        cmd = 'ffmpeg -i ' + infile + ' -c:v copy -c:a aac -strict -2 -b:a 96k ' + outfile
+        cmd = 'ffmpeg -i ' + infile + ' -c:v copy -c:a aac -strict -2 -b:a 128k ' + outfile
         os.system(cmd)
         log.info(outfile)
 
