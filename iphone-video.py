@@ -26,7 +26,10 @@ MUSIC_VOLUME = 0.1
 
 MP4_RESULT_FILE = 'out.mp4'
 FADE_FRAMES = 50
-VIDEO_QUALITY = 24
+
+#23 9500 kbps
+#24 7300 kbps 
+VIDEO_QUALITY = 23
 
 log = logging.getLogger(APP_NAME)
 log.setLevel(logging.DEBUG)
@@ -36,7 +39,7 @@ lfh.setFormatter(formatter)
 log.addHandler(lfh)
 
 tmpdir = tempfile.mkdtemp()
-log.info('Temp dir ' + tmpdir)
+log.info('Temp dir ' + tmpdir + ' is created.')
 
 
 log.info('PNG > MPG')
@@ -96,6 +99,6 @@ log.info(cmd)
 os.system(cmd)
 
 
-#log.info('Removing temp dir ' + tmpdir + '...')
-#shutil.rmtree(tmpdir)
-#log.info('DONE')
+log.info('Removing temp dir ' + tmpdir + '...')
+shutil.rmtree(tmpdir)
+log.info('DONE')
