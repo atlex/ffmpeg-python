@@ -25,11 +25,13 @@ COUNT_MUSIC_REPEAT = 3
 MUSIC_VOLUME = 0.1
 
 MP4_RESULT_FILE = 'out.mp4'
-FADE_FRAMES = 50
+FADE_FRAMES = 40
 
+#21 11000 kbps
+#22
 #23 9500 kbps
 #24 7300 kbps 
-VIDEO_QUALITY = 23
+VIDEO_QUALITY = 21
 
 log = logging.getLogger(APP_NAME)
 log.setLevel(logging.DEBUG)
